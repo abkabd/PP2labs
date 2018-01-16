@@ -8,6 +8,11 @@ namespace Prime
 {
     class Program
     {
+        /// <summary>
+        /// Function for checking if given number is prime
+        /// </summary>
+        /// <param name="n">Possible prime number</param>
+        /// <returns>True if N is prime, false otherwise</returns>
         static bool IsPrime(int n)
         {
             if (n < 2) return false;
@@ -36,7 +41,7 @@ namespace Prime
                     primes.Add(t);
                 }
             }
-
+            
             primes.Sort();
             Console.WriteLine("\nPrimes in your list are: ");
             foreach(var i in primes)
