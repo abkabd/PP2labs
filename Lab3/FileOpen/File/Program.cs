@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -45,7 +47,7 @@ namespace File
             if(x == 'Y')
             {
 
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Green;
             }
         }
 
@@ -90,51 +92,72 @@ namespace File
             }
             else
             {
-                Console.BackgroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
             }
         }
 
         static void PrintDir(int index, DirectoryInfo[] dirs, FileInfo[] files)
         {
+            List<FileSystemInfo> arr = new List<FileSystemInfo>();
+            arr.AddRange(dirs);
+            arr.AddRange(files);
             Console.Clear();
-
+            Thread.Sleep(0);
             PrintFrameUp();
-            Console.Write("                           ");
-            SetTextColor('W');
-            HighightBackground(index, -1);
-            PrintName("...", 'W');
-            for(int i=0; i<dirs.Length; i++)
+            
+            int n = 10;
+            int pos = index / n;
+            pos *= n;
+            if(index < n)
             {
+                Console.Write("                           ");
+                SetTextColor('W');
+                HighightBackground(index, -1);
+                PrintName("...", 'W');
+            }
+
+            for (int i=pos; i<pos+10; i++)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                if(i >= arr.Count)
+                {
+                    break;
+                }
                 Console.Write("                           ");
                 HighightBackground(index, i);
-                PrintName(dirs[i].Name, 'W');
-
+                if (arr[i].GetType() == typeof(DirectoryInfo))
+                {
+                    PrintName(arr[i].Name, 'W');
+                }
+                else
+                {
+                    PrintName(arr[i].Name, 'Y');
+                }
+                
             }
-
-            for(int i=0; i<files.Length; i++)
-            {
-                Console.Write("                           ");
-                HighightBackground(index, i + dirs.Length);
-                PrintName(files[i].Name, 'Y');
-            }
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
             PrintFrameDown();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(50, 2);
+            Console.WriteLine($"Page {index / n + 1}");
         }
 
-        static bool WantToExit()
+        static void ShowFile(string path)
         {
             Console.Clear();
-            PrintFrameUp();
-            Console.Write("                           ");
-            PrintName("Want to exit?", 'Y');
-            Console.Write("                           ");
-            PrintName("YES", 'W');
-            Console.Write("                           ");
-            PrintName("NO", 'W');
-            PrintFrameDown();
-            return true;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.ReadWrite);
+            StreamReader sr = new StreamReader(fs);
+
+            Console.WriteLine(sr.ReadToEnd());
+
+            sr.Close();
+            fs.Close();
+            Console.ReadKey();
+
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
         }
-        
+
         static void Recur(int index, string path, int outLen)
         {
             DirectoryInfo d = new DirectoryInfo(@path);
@@ -171,12 +194,13 @@ namespace File
                             {
                                 if(path.Length < outLen)
                                 {
-                                    quit = WantToExit();
+                                    quit = true;
                                     break;
                                 }
                                 int pos = path.LastIndexOf('\\');
                                 newPath = path;
                                 newPath = newPath.Remove(pos, newPath.Length - pos);
+                                
                             }
                             else if (index < dirs.Length)
                             {
@@ -191,25 +215,29 @@ namespace File
                             {
                                 Recur(-1, newPath, outLen);
                             }
+                            else
+                            {
+                                ShowFile(newPath);
+                            }
                             break;
                         }
-
                     case ConsoleKey.Escape:
+                    case ConsoleKey.Backspace:
                         {
                             quit = true;
                             break;
                         }
-                        
 
                 }
             }
+            Console.Clear();
             return;
         }
 
         static void Main()
         {
-            string path = @"G:\Lessons";
-
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            string path = @"G:\Lessons\Programming";
             Recur(-1, path, path.Length);
             
         }

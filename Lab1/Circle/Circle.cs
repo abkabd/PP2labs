@@ -11,8 +11,11 @@ namespace Circle
     /// </summary>
     class Circle
     {
+        /// <summary>
+        /// Radius of a circle
+        /// </summary>
         double r;
-
+        
         public Circle()
         {
             r = 0;

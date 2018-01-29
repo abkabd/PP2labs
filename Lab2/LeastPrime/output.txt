@@ -1,0 +1,1 @@
+Minimum prime number in your list is 23

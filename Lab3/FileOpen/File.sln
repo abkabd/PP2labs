@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File", "File\File.csproj", "{C6DFECCB-CDCE-4789-85A0-A2E28BAFA2AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isl", "Isl\Isl.csproj", "{A1071D43-BF77-423F-B58A-12210DE78490}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorer", "FileExplorer\FileExplorer.csproj", "{D7EB117B-812E-401A-BE97-DC6CEDDDC4D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{C6DFECCB-CDCE-4789-85A0-A2E28BAFA2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6DFECCB-CDCE-4789-85A0-A2E28BAFA2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6DFECCB-CDCE-4789-85A0-A2E28BAFA2AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1071D43-BF77-423F-B58A-12210DE78490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1071D43-BF77-423F-B58A-12210DE78490}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1071D43-BF77-423F-B58A-12210DE78490}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1071D43-BF77-423F-B58A-12210DE78490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7EB117B-812E-401A-BE97-DC6CEDDDC4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7EB117B-812E-401A-BE97-DC6CEDDDC4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7EB117B-812E-401A-BE97-DC6CEDDDC4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7EB117B-812E-401A-BE97-DC6CEDDDC4D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
