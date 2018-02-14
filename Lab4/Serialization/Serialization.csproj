@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7EB117B-812E-401A-BE97-DC6CEDDDC4D2}</ProjectGuid>
+    <ProjectGuid>{11DA1533-194F-4080-A1B9-191FCD1E979D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FileExplorer</RootNamespace>
-    <AssemblyName>FileExplorer</AssemblyName>
+    <RootNamespace>Serialization</RootNamespace>
+    <AssemblyName>Serialization</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -47,6 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="complex.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="complex.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

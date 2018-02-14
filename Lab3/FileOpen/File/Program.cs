@@ -14,7 +14,7 @@ namespace File
     {
         static void PrintFrameUp()
         {
-            string x = "                           ";
+            string x = "";// "                           ";
             string s1 = " ______________________________________________________";
             string s2 = "│ ____________________________________________________ │";
             string s3 = "││ __________________________________________________ ││";
@@ -25,7 +25,7 @@ namespace File
 
         static void PrintFrameDown()
         {
-            string x = "                           ";
+            string x = "";// "                           ";
             string s1 = "│││__________________________________________________│││";
             string s2 = "││____________________________________________________││";
             string s3 = "│______________________________________________________│";
@@ -40,11 +40,11 @@ namespace File
 
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            if(x == 'R')
+            if (x == 'R')
             {
                 Console.ForegroundColor = ConsoleColor.Red;
             }
-            if(x == 'Y')
+            if (x == 'Y')
             {
 
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -80,7 +80,7 @@ namespace File
             Console.Write(t1 + ss + s + t);
             SetTextColor('R');
             Console.Write(a);
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine();
         }
 
@@ -101,29 +101,30 @@ namespace File
             List<FileSystemInfo> arr = new List<FileSystemInfo>();
             arr.AddRange(dirs);
             arr.AddRange(files);
-            Console.Clear();
             Thread.Sleep(0);
             PrintFrameUp();
-            
+
             int n = 10;
             int pos = index / n;
             pos *= n;
-            if(index < n)
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            if (index < n)
             {
-                Console.Write("                           ");
+                //Console.Write("                           ");
                 SetTextColor('W');
                 HighightBackground(index, -1);
                 PrintName("...", 'W');
             }
 
-            for (int i=pos; i<pos+10; i++)
+            for (int i = pos; i < pos + 10; i++)
             {
+
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
-                if(i >= arr.Count)
+                if (i >= arr.Count)
                 {
                     break;
                 }
-                Console.Write("                           ");
+                //Console.Write("                           ");
                 HighightBackground(index, i);
                 if (arr[i].GetType() == typeof(DirectoryInfo))
                 {
@@ -133,20 +134,19 @@ namespace File
                 {
                     PrintName(arr[i].Name, 'Y');
                 }
-                
+
             }
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             PrintFrameDown();
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(50, 2);
+            Console.SetCursorPosition(25, 2);
             Console.WriteLine($"Page {index / n + 1}");
         }
 
         static void ShowFile(string path)
         {
-            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.ReadWrite);
+            FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs);
 
             Console.WriteLine(sr.ReadToEnd());
@@ -168,16 +168,18 @@ namespace File
 
             int n = dirs.Length + files.Length;
             bool quit = false;
+            
             while (!quit)
             {
+                Console.SetCursorPosition(0, 0);
                 PrintDir(index, dirs, files);
-
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
 
                 switch (pressedKey.Key)
                 {
                     case ConsoleKey.UpArrow:
                         {
+
                             index--;
                             if (index < -1) index = n - 1;
                             break;
@@ -192,7 +194,7 @@ namespace File
                         {
                             if (index == -1)
                             {
-                                if(path.Length < outLen)
+                                if (path.Length < outLen)
                                 {
                                     quit = true;
                                     break;
@@ -200,7 +202,7 @@ namespace File
                                 int pos = path.LastIndexOf('\\');
                                 newPath = path;
                                 newPath = newPath.Remove(pos, newPath.Length - pos);
-                                
+
                             }
                             else if (index < dirs.Length)
                             {
@@ -210,7 +212,7 @@ namespace File
                             {
                                 newPath = files[index - dirs.Length].FullName;
                             }
-
+                            Console.Clear();
                             if (index < dirs.Length)
                             {
                                 Recur(-1, newPath, outLen);
@@ -236,10 +238,13 @@ namespace File
 
         static void Main()
         {
+            Console.CursorVisible = false;
             Console.BackgroundColor = ConsoleColor.DarkBlue;
+            ShowFile("input.txt");
             string path = @"G:\Lessons\Programming";
-            Recur(-1, path, path.Length);
-            
+            string path2 = @"C:\Users\Administrator\Desktop\chch";
+            Recur(-1, path2, path2.Length);
+
         }
     }
 }
