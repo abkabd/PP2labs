@@ -29,7 +29,7 @@ namespace SnakeGame
 
         public void Set()
         {
-            Console.CursorVisible = true;
+            Console.CursorVisible = false;
             Console.BackgroundColor = BaseColor;
             Console.ForegroundColor = TextColor;
             Console.SetWindowSize(WindowW, WindowH);

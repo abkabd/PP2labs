@@ -20,50 +20,16 @@ namespace SnakeGame
         ConsoleColor selectedColor = ConsoleColor.Red;
         ConsoleColor unselectedColor = ConsoleColor.Yellow;
 
-        void NewGame()
-        {
-            Game game = new Game();
-            game.Start();
-        }
-
-        void Continue()
-        {
-            Console.Write('c');
-            //Game.Load();
-        }
-
-        void Options()
-        {
-            Console.Write('o');
-        }
-
-        void Records()
-        {
-            Record record = new Record();
-            record.Show();
-        }
-        
-        bool Quit()
-        {
-            Quit quit = new Quit();
-            return quit.WantToQuit(); 
-        }
-        
         public void Start()
         {
             Console.ForegroundColor = unselectedColor;
             Console.SetCursorPosition(0, 0);
+            DrawBorder();
             DrawTitle();
             ConsoleKeyInfo button = new ConsoleKeyInfo();
             bool quit = false;
-            while(!quit)
+            while (!quit)
             {
-                if (!quit)
-                {
-                    DrawBorder();
-                    DrawTitle();
-                }
-
                 Draw();
                 button = Console.ReadKey(true);
 
@@ -72,7 +38,7 @@ namespace SnakeGame
                     case ConsoleKey.UpArrow:
                         {
                             selectedItem--;
-                            if(selectedItem < 0) { selectedItem = ItemsCount - 1; }
+                            if (selectedItem < 0) { selectedItem = ItemsCount - 1; }
                             break;
                         }
                     case ConsoleKey.DownArrow:
@@ -116,14 +82,49 @@ namespace SnakeGame
                                         break;
                                     }
                             }
+
+                            if (!quit)
+                            {
+                                DrawBorder();
+                                DrawTitle();
+                            }
                             break;
                         }
                     default:
                         break;
                 }
 
-                
+
             }
+        }
+
+        void NewGame()
+        {
+            Game game = new Game();
+            game.Start();
+        }
+
+        void Continue()
+        {
+            Console.Write('c');
+            //Game.Load();
+        }
+
+        void Options()
+        {
+            Console.Write('o');
+        }
+
+        void Records()
+        {
+            Record record = new Record();
+            record.Show();
+        }
+        
+        bool Quit()
+        {
+            Quit quit = new Quit();
+            return quit.WantToQuit(); 
         }
 
         void Draw()

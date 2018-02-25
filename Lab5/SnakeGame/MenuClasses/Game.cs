@@ -16,154 +16,74 @@ namespace SnakeGame
         Wall wall = new Wall();
         Food food = new Food();
         int currentLevel { get; set; }
-
-        /*
-        public void Start()
-        {
-            Console.Clear();
-            ConsoleKeyInfo cki;
-            while (true)
-            {
-                snake.Draw();
-                cki = Console.ReadKey();
-                ChangeDirection(cki);
-                snake.Move();
-            }
-            Console.ReadKey();
-        }
-        */
-        ////-----------------------------------------------------------//
+        int score = 0;
+        
         public void Start()
         {
             Initialize();
-            wall.Draw();
-
             ConsoleKeyInfo cki;
-            int speed = 100;
             do
             {
                 while (Console.KeyAvailable == false)
                 {
-                    snake.Clear();
-                    food.Draw();
-                    snake.Draw();
-                    snake.Move();
-                    Thread.Sleep(speed);
+                    Draw();
+                    Thread.Sleep(snake.speed);
                 }
-
+                
                 cki = Console.ReadKey(true);
-                ChangeDirection(cki);
+                snake.ChangeDirection(cki);
+
             }
             while (snake.IsAlive);
-            Console.WriteLine("Game Over!");
-            //int dx = snake.DX, dy = snake.DY, speed = 250, addSpeed = 10, speedMax = 10, speedMin = 300;
-            /*
-            do
-            {
-                while (Console.KeyAvailable == false)
-                {
-                    snake.Move();
-
-                    /*
-                    Console.SetCursorPosition(x, y);    
-                    Console.Write("█");
-
-                    prevx = x;
-                    prevy = y;
-                    x += snake.DX;
-                    y += snake.DY;
-                    */
-
-            //Thread.Sleep(speed);
-            /*
-            Console.SetCursorPosition(prevx, prevy);
-            Console.Write(" ");
-            *
         }
 
-        cki = Console.ReadKey(true);
-        ChangeDirection(cki);
-        /*
-        switch (cki.Key)
-        {
-            case ConsoleKey.Add:
-                {
-                    speed -= addSpeed;
-                    if (speed < speedMax)
-                    {
-                        speed = speedMax;
-                    }
-                    break;
-                }
-            case ConsoleKey.Subtract:
-                {
-                    speed += addSpeed;
-                    if (speed > speedMin)
-                    {
-                        speed = speedMin;
-                    }
-                    break;
-                }
-
-            default:
-                {
-                    break;
-                }
-
-        }
-
-    } while (true);
-    */
-        }
-
-        public void Initialize()
+        void Initialize()
         {
             Console.Clear();
-            currentLevel = 2;
-            wall.LoadLevel(currentLevel);
-            //DrawBorder();
-
+            DrawBorder();
+            food.Draw();
         }
 
-        public void ChangeDirection(ConsoleKeyInfo pressedButton)
+        void StatusBar()
         {
-            switch (pressedButton.Key)
-            {
-                case ConsoleKey.UpArrow:
-                    snake.DX = 0;
-                    snake.DY = -1;
-                    break;
-                case ConsoleKey.DownArrow:
-                    snake.DX = 0;
-                    snake.DY = 1;
-                    break;
-                case ConsoleKey.LeftArrow:
-                    snake.DX = -1;
-                    snake.DY = 0;
-                    break;
-                case ConsoleKey.RightArrow:
-                    snake.DX = 1;
-                    snake.DY = 0;
-                    break;
-                default:
-                    break;
-            }
+
+            Console.SetCursorPosition(5, 1);
+            Console.Write("Score:");
+            Console.SetCursorPosition(15, 1);
+            Console.Write(score);
+
+            Console.SetCursorPosition(30, 1);
+            Console.Write("Speed:");
+            Console.SetCursorPosition(40, 1);
+            Console.Write(snake.speed);
+            Console.Write("  ");
         }
 
-        //void DrawBorder()
-        //{
-        //    Console.SetCursorPosition(0, 0);
-        //    FileStream fs = new FileStream(@"files\Border.txt", FileMode.Open, FileAccess.Read);
-        //    StreamReader sr = new StreamReader(fs);
+        void Draw()
+        {
+            snake.Draw();
+            StatusBar();
+            if (snake.body[0].Equals(food.body))
+            {
+                snake.body.Add(food.body);
+                food.body = food.Generate();
+                food.Draw();
+                score++;
+            }
 
-        //    string value = sr.ReadToEnd();
-        //    Console.WriteLine(value);
+        }
+        void DrawBorder()
+        {
+            Console.SetCursorPosition(0, 0);
+            FileStream fs = new FileStream(@"files\Border.txt", FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
 
-        //    sr.Close();
-        //    fs.Close();
-        //}
+            string value = sr.ReadToEnd();
+            Console.WriteLine(value);
 
-        ////-----------------------------------------------------------//
+            sr.Close();
+            fs.Close();
+        }
 
     }
 }
