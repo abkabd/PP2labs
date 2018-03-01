@@ -1,3 +1,3 @@
 git add .
 git commit -m "upd"
-get push origin master
+get push -u origin master
