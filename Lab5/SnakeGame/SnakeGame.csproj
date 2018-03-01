@@ -42,16 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Food.cs" />
+    <Compile Include="MenuClasses\GameClasses\Food.cs" />
+    <Compile Include="MenuClasses\GameClasses\GameOver.cs" />
     <Compile Include="MenuClasses\Game.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="Wall.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="MenuClasses\Options.cs" />
+    <Compile Include="MenuClasses\GameClasses\Wall.cs" />
+    <Compile Include="MenuClasses\GameClasses\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MenuClasses\Quit.cs" />
     <Compile Include="MenuClasses\Record.cs" />
-    <Compile Include="Snake.cs" />
+    <Compile Include="MenuClasses\GameClasses\Snake.cs" />
     <Compile Include="StandartSettings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,12 +72,35 @@
     <Content Include="files\Title.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Levels\Level4.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Level999.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Level6.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Level0.txt" />
+    <Content Include="Levels\Level3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Levels\Level2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Levels\Level1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Serialization\currentLevel.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Serialization\score.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Serialization\snake.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

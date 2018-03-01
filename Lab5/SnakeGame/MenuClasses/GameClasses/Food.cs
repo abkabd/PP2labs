@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SnakeGame
 {
-    class Food
+    public class Food
     {
         public Point body { get; set; }
 
         public Food()
         {
-            body = new Point { X = 10, Y = 10, Sign = '$' };
+            body = new Point { X = 6, Y = 12, Sign = '$' };
         }
 
         public Point Generate()
@@ -27,12 +27,14 @@ namespace SnakeGame
         {
             Clear();
             Console.ForegroundColor = ConsoleColor.Red;
+            Console.BackgroundColor = ConsoleColor.Gray;
             Console.SetCursorPosition(body.X, body.Y);
             Console.Write(body.Sign);
             Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
         }
 
-        void Clear()
+        public void Clear()
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.SetCursorPosition(body.X, body.Y);

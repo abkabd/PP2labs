@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace SnakeGame
 {
-    class Wall
+    public class Wall
     {
         ConsoleColor wallColor = ConsoleColor.White;
         public List<Point> body { get; set; }
+        
+
         public void LoadLevel(int levelCount)
         {
             this.body = new List<Point>();
@@ -38,12 +40,26 @@ namespace SnakeGame
             fs.Close();
         }
 
+
         public void Draw()
         {
             Console.ForegroundColor = wallColor;
             for (int i = 0; i < body.Count; i++)
             {
-                Console.SetCursorPosition(body[i].X + 1, body[i].Y + 3);
+                Console.SetCursorPosition(body[i].X, body[i].Y);
+                Console.Write(body[i].Sign);
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+        }
+
+        public void Clear()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            for (int i = 0; i < body.Count; i++)
+            {
+                Console.SetCursorPosition(body[i].X, body[i].Y);
                 Console.Write(body[i].Sign);
             }
 

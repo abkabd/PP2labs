@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SnakeGame
 {
-    class Snake
+    
+    public class Snake
     {
         ConsoleColor HeadColor = ConsoleColor.Black;
         public ConsoleColor BodyColor = ConsoleColor.Green;// { get; set; }
@@ -15,6 +19,7 @@ namespace SnakeGame
         public int DX { get; set; }
         public int DY { get; set; }
         public bool IsAlive { get; set; }
+        [XmlIgnore]
         public int speed { get; set; }
         int coeff;
         int BorderH = 24, BorderW = 78;
@@ -22,12 +27,21 @@ namespace SnakeGame
         {
             body = new List<Point>();
             BodyColor = new ConsoleColor();
+            speed = StandartSettings.Speed;
+            BodyColor = StandartSettings.snakeColor;
+            body.Add(new Point { X = 35, Y = 10, Sign = '█' });
+            DX = 0;
+            DY = 1;
+            IsAlive = true;
+            coeff = 3 * speed / 8;
+        }
 
-            speed = 50;
+        public Snake(int k)
+        {
+            body = new List<Point>();
+            BodyColor = new ConsoleColor();
+            speed = StandartSettings.Speed;
             BodyColor = ConsoleColor.Green;
-            body.Add(new Point { X = 5, Y = 5, Sign = '█' });
-            DX = 1;
-            DY = 0;
             IsAlive = true;
             coeff = 3 * speed / 8;
         }
@@ -94,6 +108,7 @@ namespace SnakeGame
                     DY = 0;
                     speed -= coeff;
                     break;
+
                 default:
                     break;
             }
@@ -102,7 +117,20 @@ namespace SnakeGame
         public void Draw()
         {
             Clear();
+
             Move();
+            
+            /*
+
+            Console.ForegroundColor = HeadColor;
+            
+            Point p = body[0];
+            Console.SetCursorPosition(p.X, p.Y);
+            Console.Write(p.Sign);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            */
             Console.ForegroundColor = HeadColor;
             foreach (Point p in body)
             {
@@ -111,6 +139,7 @@ namespace SnakeGame
                 Console.ForegroundColor = BodyColor;
             }
             Console.ForegroundColor = ConsoleColor.Yellow;
+            
         }
 
         void Move()
@@ -135,7 +164,33 @@ namespace SnakeGame
             body[0] = newHeadPos;
         }
         
-        void Clear()
+        public void Clear()
+        {
+            Console.ForegroundColor = BodyColor;
+            Point p = body[0];
+            Console.SetCursorPosition(p.X, p.Y);
+            Console.Write(p.Sign);
+
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            p = body[body.Count - 1];
+            Console.SetCursorPosition(p.X, p.Y);
+            Console.Write(p.Sign);
+
+            
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            /*
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            foreach (Point p in body)
+            {
+                Console.SetCursorPosition(p.X, p.Y);
+                Console.Write(p.Sign);
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            */
+        }
+
+        public void Clear2()
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             foreach (Point p in body)
@@ -144,6 +199,26 @@ namespace SnakeGame
                 Console.Write(p.Sign);
             }
             Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+
+        public void Save()
+        {
+            StreamWriter sw = new StreamWriter(@"Serialization\snake.xml", false);
+            XmlSerializer xs = new XmlSerializer(typeof(Snake));
+            xs.Serialize(sw, this);
+
+            sw.Close();
+        }
+
+        public Snake Load()
+        {
+            Snake x;
+            FileStream fs = new FileStream(@"Serialization\snake.xml", FileMode.Open, FileAccess.Read);
+
+            XmlSerializer xs = new XmlSerializer(typeof(Snake));
+            x = xs.Deserialize(fs) as Snake;
+            fs.Close();
+            return x;
         }
 
     }

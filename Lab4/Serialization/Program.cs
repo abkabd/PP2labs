@@ -143,14 +143,14 @@ namespace Serialization
             
             c.bfSave();
             c.xsSave();
+            
             */
-
             Complex h = Complex.xsLoad();
             Console.WriteLine("XmlSerializer result: " + h);
 
             Complex g = Complex.bfLoad();
             Console.WriteLine("Binary Formatter result: " + g);
-
+            
         }
     }
 }

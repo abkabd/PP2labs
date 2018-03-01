@@ -106,15 +106,16 @@ namespace SnakeGame
 
         void Continue()
         {
-            Console.Write('c');
-            //Game.Load();
+            Game game = new Game(new Snake(0).Load());
+            game.Start();
         }
 
         void Options()
         {
-            Console.Write('o');
+            Options options = new Options();
+            options.Start();
         }
-
+          
         void Records()
         {
             Record record = new Record();

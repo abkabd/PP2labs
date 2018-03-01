@@ -8,7 +8,7 @@ namespace SnakeGame
 {
     public class Quit
     {
-        string[] items = { "No", "Yes" };
+        string[] items = { "Yes", "No" };
         int index = 0;
 
         public bool WantToQuit()
@@ -43,11 +43,11 @@ namespace SnakeGame
                             Console.Clear();
                             if (index == 0)
                             {
-                                return false;
+                                return true;
                             }
                             if (index == 1)
                             {
-                                return true;
+                                return false;
                             }
                             break;
                         }

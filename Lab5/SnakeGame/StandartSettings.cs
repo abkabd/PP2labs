@@ -12,12 +12,10 @@ namespace SnakeGame
         int WindowH = 30;
         int WindowW = 80;
         ConsoleColor BaseColor = ConsoleColor.DarkBlue;
-        ConsoleColor SnakeBodyColor = ConsoleColor.Green;
-        ConsoleColor SnakeHeadColor = ConsoleColor.Black;
         ConsoleColor TextColor = ConsoleColor.Yellow;
-        ConsoleColor FoodColor = ConsoleColor.Red;
-        ConsoleColor MegaFoodColor = ConsoleColor.White;
 
+        public static int Speed { get; set; }
+        public static ConsoleColor snakeColor { get; set; }
         /*
 
          * Screen color is DarkBlue
@@ -29,6 +27,8 @@ namespace SnakeGame
 
         public void Set()
         {
+            Speed = 200;
+            snakeColor = ConsoleColor.Green;
             Console.CursorVisible = false;
             Console.BackgroundColor = BaseColor;
             Console.ForegroundColor = TextColor;
