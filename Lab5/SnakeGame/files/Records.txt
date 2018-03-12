@@ -16,5 +16,5 @@ PLAYER
 112
 uffff
 105
-Akkkk
+PLAYER
 102

@@ -25,7 +25,7 @@ namespace SnakeGame
             snake = new Snake();
             wall = new Wall();
             food = new Food();
-            currentLevel = 0;
+            currentLevel = 1;
             score = 0;
         }
 
