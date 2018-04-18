@@ -464,10 +464,12 @@ namespace Calculator
                     showMemory.Invoke($"Memory: {memoryNum}");
                     break;
                 case "MR":
+                    /*
                     currentNum = memoryNum.ToString();
-                    msgToShow = currentNum;
+                    msgToShow = currentNum;*/
                     showMemory.Invoke("");
                     change_MS_MC("MS");
+                    Process(memoryNum.ToString());
                     memoryNum = 0;
                     break;
                 case "MC":
