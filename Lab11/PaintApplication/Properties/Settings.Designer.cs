@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lab12.Properties
+namespace PaintApplication.Properties
 {
 
 

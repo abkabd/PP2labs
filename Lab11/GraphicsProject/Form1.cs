@@ -64,9 +64,15 @@ namespace GraphicsProject
 
         private void DrawInfo()
         {
+            StringFormat sf = new StringFormat();
+            sf.LineAlignment = StringAlignment.Center;
+            sf.Alignment = StringAlignment.Center;
 
-            string text = "Mouse position:";
-            gfx.DrawString(text, new Font("Times New Roman", 12), new SolidBrush(Color.Black), new Rectangle(400, 20, 100, 10));
+            string text = "Level: 1";
+            Rectangle rect = new Rectangle(600, 50, 150, 30);
+            gfx.FillRectangle(new SolidBrush(Color.GreenYellow), rect);
+            gfx.DrawRectangle(new Pen(Color.Yellow, 4), rect);
+            gfx.DrawString(text, new Font("Times New Roman", 12), new SolidBrush(Color.Black), rect, sf);
         }
 
         private void DrawAsteroids()

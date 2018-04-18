@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{68AF17AE-4F79-4A2A-97BB-E132D3682EEE}</ProjectGuid>
+    <ProjectGuid>{8EF30813-1277-490C-A59F-59934C278B3A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Lab12</RootNamespace>
-    <AssemblyName>Lab12</AssemblyName>
+    <RootNamespace>PaintApplication</RootNamespace>
+    <AssemblyName>PaintApplication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -64,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,6 +78,120 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\artist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\art-painting-roller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\art-palette %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\art-palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cubes %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cubes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagonal-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\divide-mathematical-sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ellipse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ellipse2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eraser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eyedropper %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eyedropper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-brush %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paintbrush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-brush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-bucket-with-handle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-can.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-palette-and-brush %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-palette-and-brush %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-roller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper-and-pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plain-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plain-square.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plain-star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plain-triangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rectangle2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\triangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\triangle2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vector-diagonal-line-with-box-edges.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\watercolor-palette.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
