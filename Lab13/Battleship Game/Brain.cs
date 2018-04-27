@@ -48,15 +48,15 @@ namespace Battleship_Game
         }
 
 
-        public void PlaceShips(string msg)
+        public void PlaceShips(string msg, bool dir)
         {
             string[] val = msg.Split('_');
             Point p = new Point(int.Parse(val[0]), int.Parse(val[1]));
-
+            
             if (stIndex <= st.Length)
             {
                 stIndex++;
-                Ship ship = new Ship(p, st[stIndex]);
+                Ship ship = new Ship(p, st[stIndex], GetDirection(dir));
                 if (IsGoodLocated(ship))
                 {
                     units.Add(ship);
@@ -69,6 +69,16 @@ namespace Battleship_Game
                     stIndex--;
                 }
             }
+        }
+
+        private ShipDirection GetDirection(bool dir)
+        {
+            if (dir)
+            {
+                return ShipDirection.Horizontal;
+            }
+
+            return ShipDirection.Vertical;
         }
 
         private bool IsGoodLocated(Ship ship)

@@ -13,18 +13,22 @@ namespace Battleship_Game
         Human,
         Bot
     }
-
+    public delegate void TurnDelegate();
     class PlayerPanel : Panel
     {
         public Brain brain;
 
         PlayerType pType;
 
+        TurnDelegate tDelegate;
         int cell_sz = 30;
-        public PlayerPanel(Point Location, PlayerType playerType)
+        public bool dir = true;
+        public PlayerPanel(Point Location, PlayerType playerType, TurnDelegate tDelegate)
         {
             this.Location = Location;
             this.pType = playerType;
+            this.tDelegate = tDelegate;
+
             Initialize();
         }
 
@@ -39,12 +43,12 @@ namespace Battleship_Game
             }
             if(pType == PlayerType.Human)
             {
-                PlaceRandomShips();
+                //PlaceRandomShips();
             }
 
         }
 
-        private void PlaceRandomShips()
+        public void PlaceRandomShips()
         {
             Random rnd1 = new Random(Guid.NewGuid().GetHashCode());
             Random rnd2 = new Random(Guid.NewGuid().GetHashCode());
@@ -54,13 +58,13 @@ namespace Battleship_Game
                 int i = rnd2.Next(1, 11);
                 int j = rnd2.Next(1, 11);
                 string msg = string.Format("{0}_{1}", i, j);
-                brain.PlaceShips(msg);
+                brain.PlaceShips(msg, rnd1.Next(1, 100) < 55);
             }
         }
 
         private void CreateButtons()
         {
-            this.BackColor = SystemColors.ActiveCaption;
+            //this.BackColor = Color.Aqua;
             this.Size = new Size(cell_sz * 12, cell_sz * 12);
 
             for (int i = 1; i <= 10; ++i)
@@ -84,22 +88,36 @@ namespace Battleship_Game
         private void Btn_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            
+
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+
             if (brain.stIndex < brain.st.Length - 1)
             {
-                brain.PlaceShips(btn.Name);
+                brain.PlaceShips(btn.Name, dir);
             }
             else
             {
-                brain.Shoot(btn.Name);
+                if (!brain.Shoot(btn.Name))
+                {
+                    tDelegate.Invoke();
+                }
             }
 
         }
 
-        
-
         private void ChangeButton(CellState[,] map)
         {
+            Color shipColor = Color.White;
+
+            if(pType == PlayerType.Human)
+            {
+                shipColor = Color.Blue;
+            }
+            if(pType == PlayerType.Bot)
+            {
+                shipColor = Color.White;
+            }
+
             Image img = Image.FromFile(@"files/no.png");
             for (int i = 1; i <= 10; ++i)
             {
@@ -115,7 +133,7 @@ namespace Battleship_Game
                             img = Image.FromFile(@"files/no.png");
                             break;
                         case CellState.busy:
-                            colorToFill = Color.Blue;
+                            colorToFill = shipColor;
                             img = Image.FromFile(@"files/no.png");
                             break;
                         case CellState.striked:

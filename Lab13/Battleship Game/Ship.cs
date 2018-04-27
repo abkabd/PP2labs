@@ -26,10 +26,10 @@ namespace Battleship_Game
         ShipType type;
         ShipDirection direction;
 
-        public Ship(Point p, ShipType type)
+        public Ship(Point p, ShipType type, ShipDirection direction)
         {
             this.type = type;
-            this.direction = ShipDirection.Horizontal;
+            this.direction = direction;
 
             GenerateBody(p);
         }
