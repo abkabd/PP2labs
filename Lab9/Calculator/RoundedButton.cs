@@ -15,7 +15,7 @@ namespace Calculator
         {
             float r2 = radius / 2f;
             GraphicsPath GraphPath = new GraphicsPath();
-
+            r2=radius / 2f;
             GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
             GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
             GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
