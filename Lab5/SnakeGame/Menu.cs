@@ -19,7 +19,7 @@ namespace SnakeGame
         int selectedItem = 0;
         ConsoleColor selectedColor = ConsoleColor.Red;
         ConsoleColor unselectedColor = ConsoleColor.Yellow;
-
+        int asdf=543;
         public void Start()
         {
             Console.ForegroundColor = unselectedColor;
