@@ -16,7 +16,7 @@ namespace Complex
             a = 1;
             b = 1;
         }
-
+        public Complex(int a, int b, int c){}
         public Complex(int a, int b)
         {
             this.a = a;
