@@ -162,7 +162,7 @@ namespace SnakeGame
                 }
 
             
-            food.Draw();
+                food.Draw();
                 score += ShowSpeed;
             }
             else
@@ -251,7 +251,7 @@ namespace SnakeGame
 
         void Sound()
         {
-            SoundPlayer sp = new SoundPlayer(@"C:\Users\Administrator\Desktop\final.wav");
+            SoundPlayer sp = new SoundPlayer(@"files\2cut.wav");
             sp.Play();
         }
 
@@ -274,7 +274,7 @@ namespace SnakeGame
         
         void SaveObj(int k, string fname)
         {
-            FileStream fs = new FileStream(@"G:\Lessons\C sharp\github\Lab5\SnakeGame\Serialization\" + fname + ".txt", FileMode.Create, FileAccess.ReadWrite);
+            FileStream fs = new FileStream(@"Serialization\" + fname + ".txt", FileMode.Create, FileAccess.ReadWrite);
             StreamWriter sw = new StreamWriter(fs);
 
             sw.WriteLine(k);
@@ -286,7 +286,7 @@ namespace SnakeGame
 
         int LoadObj(string fname)
         {
-            FileStream fs = new FileStream(@"G:\Lessons\C sharp\github\Lab5\SnakeGame\Serialization\" + fname + ".txt", FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(@"Serialization\" + fname + ".txt", FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
             int val = int.Parse(sr.ReadLine());

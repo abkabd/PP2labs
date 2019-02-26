@@ -29,7 +29,7 @@ namespace SnakeGame
             bool add = false;
             string name2;
             int score2;
-            FileStream fs = new FileStream(@"G:\Lessons\C sharp\github\Lab5\SnakeGame\files\Records.txt", FileMode.Open, FileAccess.ReadWrite);
+            FileStream fs = new FileStream(@"files\Records.txt", FileMode.Open, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs);
             while ((name2 = sr.ReadLine()) != null)
             {
@@ -53,7 +53,7 @@ namespace SnakeGame
 
         void Write()
         {
-            FileStream fs = new FileStream(@"G:\Lessons\C sharp\github\Lab5\SnakeGame\files\Records.txt", FileMode.Truncate, FileAccess.Write);
+            FileStream fs = new FileStream(@"files\Records.txt", FileMode.Truncate, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
 
             for (int i = 0; i < 10; i++)
@@ -73,7 +73,7 @@ namespace SnakeGame
             int posX = 20, posY = 6;
             DrawBorder(posX, posY);
             
-            FileStream fs = new FileStream(@"G:\Lessons\C sharp\github\Lab5\SnakeGame\files\Records.txt", FileMode.Open, FileAccess.ReadWrite);
+            FileStream fs = new FileStream(@"files\Records.txt", FileMode.Open, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs);
 
             Console.ForegroundColor = ConsoleColor.Red;

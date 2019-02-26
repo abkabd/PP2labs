@@ -60,6 +60,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\2cut.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="files\RecordBorder.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
